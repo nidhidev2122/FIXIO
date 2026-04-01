@@ -102,14 +102,14 @@ const LoginRegister = () => {
 
   // Handle login submit
   const handleLoginSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault();                         
     setMessage({ type: "", text: "" });
 
     if (!validateLogin()) return;
 
     setLoading(true);
-    try {
-      const response = await fetch("http://localhost:5000/api/login", {
+    try {                          
+      const response = await fetch("http://localhost:5000/api/auth/login", {  // FIXED BY LAKHAN SINGH: Updated API route to match backend JWT route
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -125,17 +125,16 @@ const LoginRegister = () => {
 
       if (data.success) {
         setMessage({ type: "success", text: data.message });
-        // Store token if remember me is checked
-        if (loginForm.rememberMe) {
-          localStorage.setItem("authToken", data.token);
-          localStorage.setItem("user", JSON.stringify(data.user));
-        }
+          // ✅ FIXED BY LAKHAN SINGH: Always store token for dashboard authentication
+            localStorage.setItem("authToken", data.token);
+            localStorage.setItem("user", JSON.stringify(data.user));
+
         setLoginForm({
           username: "",
           password: "",
           rememberMe: false,
         });
-        // Redirect after success
+        // ✅ FIXED BY LAKHAN SINGH: Redirect user to dashboard after successful login
         setTimeout(() => {
           window.location.href = "/dashboard";
         }, 1500);
@@ -162,7 +161,7 @@ const LoginRegister = () => {
 
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/api/register", {
+      const response = await fetch("http://localhost:5000/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -215,7 +214,7 @@ const LoginRegister = () => {
 
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/api/forgot-password", {
+      const response = await fetch("http://localhost:5000/api/auth/forgot-password", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -277,7 +276,7 @@ const LoginRegister = () => {
       // Use real token if available, otherwise use mock token for testing
       const token = response?.credential || 'mock-google-token-for-testing-' + Math.random().toString(36).substr(2, 9);
       
-      const backendResponse = await fetch("http://localhost:5000/api/social-login", {
+      const backendResponse = await fetch("http://localhost:5000/api/auth/social-login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -322,7 +321,7 @@ const LoginRegister = () => {
       // Use real token if available, otherwise use mock token for testing
       const token = response?.authResponse?.accessToken || 'mock-facebook-token-for-testing-' + Math.random().toString(36).substr(2, 9);
       
-      const backendResponse = await fetch("http://localhost:5000/api/social-login", {
+      const backendResponse = await fetch("http://localhost:5000/api/auth/social-login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
