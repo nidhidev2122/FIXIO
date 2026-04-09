@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="360" viewBox="0 0 500 360" role="img" aria-label="Plumbing service">
+<!-- File Overview: frontend/assets/gallery-plumbing.svg — gallery plumbing for frontend UI behavior. -->
+  <rect width="500" height="360" fill="#0ea5e9"/>
+  <text x="38" y="200" fill="#fff" font-size="38" font-family="Poppins, Arial, sans-serif" font-weight="700">Plumbing Service</text>
+</svg>

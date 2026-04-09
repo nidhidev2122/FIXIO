@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="Service video poster">
+<!-- File Overview: frontend/assets/video-poster.svg — video poster for frontend UI behavior. -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="600" cy="338" r="88" fill="rgba(255,255,255,0.24)"/>
+  <polygon points="575,296 575,380 650,338" fill="#ffffff"/>
+  <text x="360" y="525" fill="#dbeafe" font-size="42" font-family="Poppins, Arial, sans-serif" font-weight="600">See a real home service workflow</text>
+</svg>

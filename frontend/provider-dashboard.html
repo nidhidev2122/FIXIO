@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!-- File Overview: frontend/provider-dashboard.html — provider dashboard for frontend UI behavior. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Provider Dashboard - FIXIO</title>
+  <link rel="stylesheet" href="css/panels.css">
+</head>
+<body>
+  <main class="page-wrap">
+    <header class="page-header">
+      <h1>Provider Dashboard</h1>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button class="btn-ghost" onclick="window.location.href='/'">Home</button>
+        <button class="btn-ghost" onclick="window.location.href='/profile'">Profile</button>
+      </div>
+    </header>
+
+    <section class="grid two" style="margin-bottom:14px;">
+      <article class="panel" id="provider-stats"></article>
+      <article class="panel" id="provider-profile"></article>
+    </section>
+
+    <section class="panel" style="margin-bottom:14px;">
+      <h3>Availability calendar</h3>
+      <div id="provider-availability-root"></div>
+    </section>
+
+    <section class="panel" style="margin-bottom:14px;">
+      <h3>Requests</h3>
+      <div id="provider-bookings-root"></div>
+    </section>
+
+    <section class="panel" style="margin-bottom:14px;">
+      <h3>Services in your category</h3>
+      <div id="provider-services-root"></div>
+    </section>
+
+    <section class="grid two">
+      <article class="panel">
+        <h3>Recent reviews</h3>
+        <div id="provider-reviews-root"></div>
+      </article>
+      <article class="panel">
+        <h3>Notifications</h3>
+        <div id="provider-notifications-root"></div>
+      </article>
+    </section>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/provider-dashboard.js"></script>
+</body>
+</html>

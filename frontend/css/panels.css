@@ -1,0 +1,173 @@
+/* File Overview: frontend/css/panels.css — panels for frontend UI behavior. */
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: radial-gradient(circle at top right, #12335a 0%, #071423 42%);
+  color: #e9f1ff;
+}
+
+.page-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 22px;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.panel {
+  background: rgba(16, 37, 63, 0.7);
+  border: 1px solid rgba(157, 195, 255, 0.2);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+}
+
+.grid {
+  display: grid;
+  gap: 12px;
+}
+
+.grid.two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+label {
+  color: #b5c8e7;
+  font-size: 0.84rem;
+}
+
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+input,
+textarea,
+select {
+  border: 1px solid rgba(157, 195, 255, 0.3);
+  border-radius: 10px;
+  background: rgba(7, 22, 49, 0.75);
+  color: #eff5ff;
+  padding: 10px;
+}
+
+button {
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #2f7bff, #5597ff);
+  color: #fff;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #d8e6ff;
+  border: 1px solid rgba(157, 195, 255, 0.3);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid rgba(157, 195, 255, 0.18);
+  vertical-align: top;
+}
+
+.chip {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 2px 10px;
+  background: rgba(90, 168, 255, 0.18);
+}
+
+.chip.pending { background: rgba(246, 168, 75, 0.25); }
+.chip.confirmed { background: rgba(94, 182, 255, 0.25); }
+.chip.completed { background: rgba(77, 208, 156, 0.25); }
+.chip.cancelled { background: rgba(232, 90, 119, 0.25); }
+
+.card {
+  border: 1px solid rgba(157, 195, 255, 0.25);
+  border-radius: 12px;
+  padding: 12px;
+  background: rgba(8, 23, 50, 0.85);
+}
+
+@media (max-width: 860px) {
+  .grid.two {
+    grid-template-columns: 1fr;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Monochrome theme override */
+:root {
+  color-scheme: dark;
+}
+
+html {
+  filter: grayscale(1);
+  background: #000;
+}
+
+body {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+a {
+  color: #fff !important;
+}
+
+button,
+.btn,
+input,
+select,
+textarea {
+  border-color: #7a7a7a !important;
+}
+
+button,
+.btn {
+  background: #fff !important;
+  color: #000 !important;
+}
+
+input,
+select,
+textarea {
+  background: #111 !important;
+  color: #fff !important;
+}

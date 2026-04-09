@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560" role="img" aria-label="AC service and gas check">
+<!-- File Overview: frontend/assets/booked-ac.svg — booked ac for frontend UI behavior. -->
+  <rect width="900" height="560" fill="#0ea5e9"/>
+  <text x="70" y="320" fill="#ffffff" font-size="62" font-family="Poppins, Arial, sans-serif" font-weight="700">AC Service &amp; Gas Check</text>
+</svg>

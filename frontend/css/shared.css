@@ -1,0 +1,41 @@
+/* File Overview: frontend/css/shared.css — shared for frontend UI behavior. */
+
+/* Monochrome theme override */
+:root {
+	color-scheme: dark;
+}
+
+html {
+	filter: grayscale(1);
+	background: #000;
+}
+
+body {
+	background: #000 !important;
+	color: #fff !important;
+}
+
+a {
+	color: #fff !important;
+}
+
+button,
+.btn,
+input,
+select,
+textarea {
+	border-color: #7a7a7a !important;
+}
+
+button,
+.btn {
+	background: #fff !important;
+	color: #000 !important;
+}
+
+input,
+select,
+textarea {
+	background: #111 !important;
+	color: #fff !important;
+}

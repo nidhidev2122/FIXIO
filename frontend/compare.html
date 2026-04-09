@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!-- File Overview: frontend/compare.html — compare for frontend UI behavior. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compare Services - FIXIO</title>
+  <link rel="stylesheet" href="css/panels.css">
+</head>
+<body>
+  <main class="page-wrap">
+    <header class="page-header">
+      <h1>Compare Services</h1>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button class="btn-ghost" onclick="window.location.href='/'">Home</button>
+        <button class="btn-ghost" onclick="clearCompareSelection()">Clear Compare</button>
+      </div>
+    </header>
+
+    <section class="panel" id="compare-root">
+      <p>Loading comparison...</p>
+    </section>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/compare.js"></script>
+</body>
+</html>

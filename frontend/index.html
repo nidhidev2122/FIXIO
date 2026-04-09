@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<!-- File Overview: frontend/index.html — index for frontend UI behavior. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIXIO - Home Services Marketplace</title>
+  <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+  <main class="home-page">
+    <header class="home-navbar">
+      <h1 class="brand-name">FIXIO</h1>
+      <nav class="nav-links">
+        <a href="#categories">Categories</a>
+        <a href="#booked">Most booked</a>
+        <a href="#trust">Why us</a>
+        <button type="button" class="nav-button ghost cart-button" id="compare-btn" onclick="goToCompare()">
+          Compare <span class="cart-count" id="compare-badge" style="display:none;">0</span>
+        </button>
+        <button type="button" class="nav-button ghost cart-button" onclick="goToCart()">
+          Cart <span class="cart-count" id="cart-badge" style="display:none;">0</span>
+        </button>
+        <button type="button" class="nav-button ghost cart-button" id="notifications-btn" onclick="toggleNotificationsPanel()" style="display:none;">
+          Alerts <span class="cart-count" id="notifications-badge" style="display:none;">0</span>
+        </button>
+        <div id="auth-buttons">
+          <button type="button" class="nav-button ghost" onclick="goToAuth()">Login</button>
+          <button type="button" class="nav-button primary" onclick="goToSignup()">Signup</button>
+        </div>
+        <div id="profile-buttons" style="display:none; gap:10px;">
+          <button type="button" class="nav-button ghost" onclick="goToBookings()">My Bookings</button>
+          <button type="button" class="nav-button ghost" onclick="goToProviderDashboard()" id="provider-dashboard-btn">Provider Dashboard</button>
+          <button type="button" class="nav-button ghost" onclick="goToProfile()">Profile</button>
+          <button type="button" class="nav-button ghost" onclick="handleLogout()">Logout</button>
+        </div>
+      </nav>
+    </header>
+
+    <section class="compare-tray" id="compare-tray" hidden>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Compare</p>
+          <h3>Selected services</h3>
+        </div>
+        <div class="compare-actions">
+          <button type="button" class="nav-button ghost" onclick="setCompareIds([])">Clear</button>
+          <button type="button" class="nav-button primary" onclick="goToCompare()">Open comparison</button>
+        </div>
+      </div>
+      <div id="compare-tray-list" class="compare-tray-list"></div>
+    </section>
+
+    <section class="hero">
+      <div class="hero-main">
+        <p class="eyebrow">At-home services, on-demand</p>
+        <h2>Find trusted professionals for every home need.</h2>
+        <p class="hero-text">Discover verified experts for beauty, repairs, cleaning, and maintenance with transparent prices and quick slots.</p>
+
+        <div class="search-shell" role="search">
+          <div class="location-box">
+            <label for="location-input">Location</label>
+            <input id="location-input" type="text" placeholder="Your city" value="Mumbai">
+          </div>
+          <div class="service-box">
+            <label for="service-search">Search for a service</label>
+            <input id="service-search" type="text" placeholder="Salon, AC repair, bathroom cleaning...">
+          </div>
+          <button type="button" class="nav-button primary" onclick="scrollToCategories()">Continue</button>
+        </div>
+
+        <div class="search-assist">
+          <div id="search-suggestions" class="search-suggestions" hidden></div>
+          <div id="recent-searches" class="recent-searches"></div>
+        </div>
+
+        <div class="filter-shell" aria-label="Service filters">
+          <div class="filter-box">
+            <label for="category-filter">Category</label>
+            <select id="category-filter">
+              <option value="all">All categories</option>
+              <option value="Beauty">Beauty</option>
+              <option value="Repair">Repair</option>
+              <option value="Cleaning">Cleaning</option>
+              <option value="General">General</option>
+            </select>
+          </div>
+          <div class="filter-box">
+            <label for="rating-filter">Minimum rating</label>
+            <select id="rating-filter">
+              <option value="0">Any rating</option>
+              <option value="4">4.0+</option>
+              <option value="4.5">4.5+</option>
+            </select>
+          </div>
+          <div class="filter-box">
+            <label for="sort-filter">Sort by</label>
+            <select id="sort-filter">
+              <option value="rating">Top rated</option>
+              <option value="price-asc">Price: Low to high</option>
+              <option value="price-desc">Price: High to low</option>
+              <option value="name">Name</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-aside">
+        <figure class="hero-image-card">
+          <img src="assets/hero-service.svg" alt="Professional home service" loading="lazy" style="width:100%; height:190px;">
+        </figure>
+        <div class="mini-stat">
+          <span>4.83</span>
+          <p>Average rating by customers</p>
+        </div>
+        <div class="mini-stat">
+          <span>10k+</span>
+          <p>Monthly bookings in your city</p>
+        </div>
+        <div class="mini-stat">
+          <span>100%</span>
+          <p>Background checked professionals</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="categories-section" id="categories">
+      <div class="section-heading">
+        <p class="eyebrow">Categories</p>
+        <h3>What are you looking for today?</h3>
+      </div>
+      <div class="categories-grid" id="categories-grid"></div>
+    </section>
+
+    <section class="booked-section" id="booked">
+      <div class="section-heading">
+        <p class="eyebrow">Most booked</p>
+        <h3>Popular services people book every day</h3>
+      </div>
+      <div class="booked-grid" id="booked-grid"></div>
+    </section>
+
+    <section class="favorites-section" id="favorites-section">
+      <div class="section-heading">
+        <p class="eyebrow">Saved</p>
+        <h3>Your favorite services</h3>
+      </div>
+      <div class="booked-grid" id="favorites-grid"></div>
+    </section>
+
+    <section class="trust-section" id="trust">
+      <div class="trust-copy">
+        <p class="eyebrow">Why FIXIO</p>
+        <h3>Quality and convenience built into every booking.</h3>
+        <ul>
+          <li>Verified professionals with ratings and reviews</li>
+          <li>Transparent pricing before confirmation</li>
+          <li>Easy rescheduling and support from one dashboard</li>
+        </ul>
+      </div>
+      <div class="app-cta">
+        <p>Get the app experience</p>
+        <h4>Faster re-booking, live tracking, and order history.</h4>
+        <button type="button" class="nav-button primary" onclick="goToAuth()">Sign in to continue</button>
+      </div>
+    </section>
+
+    <section class="notifications-panel" id="notifications-panel" hidden>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Notifications</p>
+          <h3>Recent activity</h3>
+        </div>
+        <button type="button" class="nav-button ghost" onclick="toggleNotificationsPanel(false)">Close</button>
+      </div>
+      <div id="notifications-list" class="notifications-list"></div>
+    </section>
+  </main>
+
+  <script src="js/cart.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

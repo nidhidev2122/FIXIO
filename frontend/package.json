@@ -1,0 +1,17 @@
+{
+  "name": "home-services-marketplace-vanilla",
+  "version": "1.0.0",
+  "description": "Vanilla JavaScript application for Home Services Marketplace",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "serve": "npx http-server -p 8000 -o"
+  },
+  "keywords": [
+    "home-services",
+    "marketplace",
+    "vanilla-js"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-label="Home services hero image">
+<!-- File Overview: frontend/assets/hero-service.svg — hero service for frontend UI behavior. -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="700" fill="url(#bg)"/>
+  <circle cx="980" cy="160" r="120" fill="rgba(255,255,255,0.18)"/>
+  <text x="90" y="350" fill="#ffffff" font-size="74" font-family="Poppins, Arial, sans-serif" font-weight="700">Trusted Home Services</text>
+  <text x="90" y="410" fill="#dbeafe" font-size="34" font-family="Poppins, Arial, sans-serif">Beauty • Repairs • Cleaning • Maintenance</text>
+</svg>

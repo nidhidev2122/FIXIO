@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!-- File Overview: frontend/service.html — service for frontend UI behavior. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Details - FIXIO</title>
+  <link rel="stylesheet" href="css/panels.css">
+</head>
+<body>
+  <main class="page-wrap">
+    <header class="page-header">
+      <h1>Service Details</h1>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button class="btn-ghost" onclick="window.location.href='/'">Back Home</button>
+        <button class="btn-ghost" onclick="window.location.href='/bookings'">My Bookings</button>
+      </div>
+    </header>
+
+    <section class="panel grid two" id="service-root"></section>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/service.js"></script>
+</body>
+</html>

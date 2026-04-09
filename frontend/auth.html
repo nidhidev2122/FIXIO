@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!-- File Overview: frontend/auth.html — auth for frontend UI behavior. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login & Signup - FIXIO</title>
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+  <main class="auth-page">
+    <section class="auth-shell">
+      <aside class="auth-hero" aria-hidden="true">
+        <div class="hero-badge">FIXIO</div>
+        <h1>Fast access for consumers and providers.</h1>
+        <p>
+          Create a service account, save your details, and jump straight into bookings or provider tools.
+        </p>
+        <div class="hero-points">
+          <div class="hero-point">
+            <strong>Consumer</strong>
+            <span>Book, save, and manage your service history.</span>
+          </div>
+          <div class="hero-point">
+            <strong>Provider</strong>
+            <span>Show your services, availability, and verification details.</span>
+          </div>
+        </div>
+      </aside>
+
+      <section class="auth-card">
+        <div class="form-container">
+          <div id="login-form" class="form-box" style="display:none;">
+            <div class="auth-top-row">
+              <div>
+                <p class="section-kicker">Welcome back</p>
+                <p id="account-type-chip" class="account-chip">Consumer Account</p>
+              </div>
+              <button type="button" class="link-button subtle" onclick="toggleAccountType()">Switch account</button>
+            </div>
+            <h1 id="login-title">Consumer Login</h1>
+            <p class="form-intro">Use your registered email or username to continue.</p>
+            <form onsubmit="handleLogin(event)" novalidate>
+              <div class="input-box">
+                <input type="text" placeholder="Username or Email" id="login-username" autocomplete="username">
+              </div>
+              <div class="input-box password-wrap">
+                <input type="password" placeholder="Password" id="login-password" autocomplete="current-password">
+                <button
+                  type="button"
+                  class="password-toggle"
+                  id="toggle-login-password"
+                  onclick="togglePassword('login-password', 'toggle-login-password')"
+                  aria-label="Show password"
+                  title="Show password"
+                >
+                  &#128065;
+                </button>
+              </div>
+              <div class="remember-forgot">
+                <label>
+                  <input type="checkbox" id="remember-me"> Remember me
+                </label>
+                <button type="button" class="link-button" onclick="showForgotPassword()">Forgot Password?</button>
+              </div>
+              <button type="submit" class="submit-btn" id="login-submit">Login as Consumer</button>
+              <div class="register-link">
+                <p>Don't have an account? <button type="button" class="link-button" onclick="switchToRegister()">Register</button></p>
+              </div>
+            </form>
+          </div>
+
+          <div id="register-form" class="form-box" style="display:none;">
+            <div class="auth-top-row">
+              <div>
+                <p class="section-kicker">Create account</p>
+                <p id="register-account-type-chip" class="account-chip">Consumer Account</p>
+              </div>
+              <button type="button" class="link-button subtle" onclick="toggleAccountType()">Switch account</button>
+            </div>
+            <h1 id="register-title">Consumer Registration</h1>
+            <p class="form-intro">Set up your profile and finish in a couple of steps.</p>
+            <form onsubmit="handleRegister(event)" novalidate>
+              <div class="input-grid">
+                <div class="input-box">
+                  <input type="text" placeholder="Username" id="register-username" autocomplete="username">
+                </div>
+                <div class="input-box">
+                  <input type="email" placeholder="Email" id="register-email" autocomplete="email">
+                </div>
+              </div>
+              <div class="input-grid">
+                <div class="input-box password-wrap">
+                  <input type="password" placeholder="Password" id="register-password" autocomplete="new-password">
+                  <button
+                    type="button"
+                    class="password-toggle"
+                    id="toggle-register-password"
+                    onclick="togglePassword('register-password', 'toggle-register-password')"
+                    aria-label="Show password"
+                    title="Show password"
+                  >
+                    &#128065;
+                  </button>
+                </div>
+                <div class="input-box password-wrap">
+                  <input type="password" placeholder="Confirm Password" id="register-confirm" autocomplete="new-password">
+                  <button
+                    type="button"
+                    class="password-toggle"
+                    id="toggle-register-confirm"
+                    onclick="togglePassword('register-confirm', 'toggle-register-confirm')"
+                    aria-label="Show password"
+                    title="Show password"
+                  >
+                    &#128065;
+                  </button>
+                </div>
+              </div>
+
+              <div class="password-strength" id="password-strength" aria-live="polite">
+                <div class="strength-row">
+                  <span>Password strength</span>
+                  <strong id="strength-label">Weak</strong>
+                </div>
+                <div class="strength-track">
+                  <div class="strength-fill" id="strength-fill"></div>
+                </div>
+              </div>
+
+              <div id="provider-extra-fields" class="provider-panel" style="display:none;">
+                <div class="provider-panel-head">
+                  <h3>Provider details</h3>
+                  <p>Add the basics customers need to find and trust you.</p>
+                </div>
+                <div class="input-grid">
+                  <div class="input-box">
+                    <input type="text" placeholder="Service Category (e.g. Electrician)" id="provider-service-category">
+                  </div>
+                  <div class="input-box">
+                    <input type="number" min="0" placeholder="Years of Experience" id="provider-experience-years">
+                  </div>
+                </div>
+                <div class="input-box">
+                  <input type="text" placeholder="Availability (e.g. Weekdays 9AM-6PM)" id="provider-availability">
+                </div>
+              </div>
+
+              <div class="remember-forgot terms-row">
+                <label>
+                  <input type="checkbox" id="agree-terms"> I agree to the terms & conditions
+                </label>
+              </div>
+              <button type="submit" class="submit-btn" id="register-submit">Register as Consumer</button>
+              <div class="register-link">
+                <p>Already have an account? <button type="button" class="link-button" onclick="switchToLogin()">Login</button></p>
+              </div>
+            </form>
+          </div>
+
+          <div id="forgot-password-form" class="form-box" style="display:none;">
+            <div class="auth-top-row">
+              <div>
+                <p class="section-kicker">Need help?</p>
+                <h1>Reset password</h1>
+              </div>
+              <button type="button" class="link-button subtle" onclick="showLogin()">Back to login</button>
+            </div>
+            <p class="form-intro">Enter your email address and we’ll send a reset link.</p>
+            <form onsubmit="handleForgotPassword(event)" novalidate>
+              <div class="input-box">
+                <input type="email" placeholder="Your email" id="forgot-email" autocomplete="email">
+              </div>
+              <button type="submit" class="submit-btn">Send Reset Link</button>
+            </form>
+          </div>
+        </div>
+
+        <div id="message" class="message" style="display:none;"></div>
+      </section>
+    </section>
+  </main>
+
+  <script src="js/api.js?v=20260405"></script>
+  <script src="js/auth.js?v=20260405"></script>
+</body>
+</html>

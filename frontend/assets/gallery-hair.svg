@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="360" viewBox="0 0 500 360" role="img" aria-label="Hair styling service">
+<!-- File Overview: frontend/assets/gallery-hair.svg — gallery hair for frontend UI behavior. -->
+  <rect width="500" height="360" fill="#a855f7"/>
+  <text x="38" y="200" fill="#fff" font-size="38" font-family="Poppins, Arial, sans-serif" font-weight="700">Hair Styling</text>
+</svg>

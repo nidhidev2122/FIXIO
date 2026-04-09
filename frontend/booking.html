@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!-- File Overview: frontend/booking.html — booking for frontend UI behavior. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Details - FIXIO</title>
+  <link rel="stylesheet" href="css/panels.css">
+</head>
+<body>
+  <main class="page-wrap">
+    <header class="page-header">
+      <h1>Booking Details</h1>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button class="btn-ghost" onclick="window.location.href='/bookings'">Back to Bookings</button>
+        <button class="btn-ghost" onclick="window.location.href='/'">Home</button>
+      </div>
+    </header>
+
+    <section class="grid two">
+      <article class="panel" id="booking-summary"></article>
+      <article class="panel" id="booking-actions"></article>
+    </section>
+
+    <section class="panel" style="margin-top:14px;">
+      <h3>Status Timeline</h3>
+      <div id="booking-timeline"></div>
+    </section>
+
+    <section class="panel" style="margin-top:14px;">
+      <h3>Review</h3>
+      <div id="booking-review-root"></div>
+    </section>
+
+    <section class="panel" style="margin-top:14px;">
+      <h3>Booking Chat</h3>
+      <div id="booking-chat-root"></div>
+    </section>
+
+    <section class="panel" style="margin-top:14px;">
+      <h3>Support Tickets</h3>
+      <div id="booking-support-root"></div>
+    </section>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/booking.js"></script>
+</body>
+</html>

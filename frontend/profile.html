@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<!-- File Overview: frontend/profile.html — profile for frontend UI behavior. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - FIXIO</title>
+  <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+  <main class="profile-page">
+    <section class="profile-shell">
+      <header class="profile-header card">
+        <div class="profile-title-group">
+          <div class="profile-avatar-row">
+            <img id="profile-avatar-image" class="profile-avatar-image" src="" alt="Profile picture">
+            <div>
+              <p class="eyebrow">Account profile</p>
+              <div class="profile-name-row">
+                <h1 id="profile-username-display">Profile</h1>
+                <span id="profile-role-badge" class="role-badge role-consumer">consumer</span>
+              </div>
+            </div>
+          </div>
+          <p id="profile-meta" class="profile-meta">Manage your personal and service details.</p>
+        </div>
+
+        <div class="action-row" aria-label="Profile actions">
+          <button type="button" class="btn btn-secondary" id="home-btn">Home</button>
+          <button type="button" class="btn btn-secondary" id="bookings-btn">My Bookings</button>
+          <button type="button" class="btn btn-secondary" id="cart-btn">Cart</button>
+          <button type="button" class="btn btn-secondary" id="provider-dashboard-btn">Provider Dashboard</button>
+          <button type="button" class="btn btn-danger" id="logout-btn">Logout</button>
+        </div>
+      </header>
+
+      <section class="stats-grid" aria-label="Booking statistics">
+        <article class="stat-card card">
+          <span class="stat-label">Total bookings</span>
+          <strong id="stat-total" class="stat-value">0</strong>
+        </article>
+        <article class="stat-card card">
+          <span class="stat-label">Pending</span>
+          <strong id="stat-pending" class="stat-value">0</strong>
+        </article>
+        <article class="stat-card card">
+          <span class="stat-label">Completed</span>
+          <strong id="stat-completed" class="stat-value">0</strong>
+        </article>
+      </section>
+
+      <section class="content-grid">
+        <section class="card form-card">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Edit profile</p>
+              <h2>Personal details</h2>
+            </div>
+            <span id="profile-status" class="status-pill">Ready</span>
+          </div>
+
+          <form id="profile-form" class="profile-form" novalidate>
+            <div class="field-grid">
+              <label class="field">
+                <span>Username</span>
+                <input id="username" name="username" type="text" autocomplete="username" required>
+              </label>
+              <label class="field">
+                <span>Phone</span>
+                <input id="phone" name="phone" type="tel" autocomplete="tel">
+              </label>
+              <label class="field">
+                <span>City</span>
+                <input id="city" name="city" type="text" autocomplete="address-level2">
+              </label>
+              <label class="field field-wide">
+                <span>Address</span>
+                <input id="address" name="address" type="text" autocomplete="street-address">
+              </label>
+              <label class="field field-wide">
+                <span>Bio</span>
+                <textarea id="bio" name="bio" rows="4" placeholder="Tell us a little about yourself"></textarea>
+              </label>
+              <div class="field field-wide">
+                <span>Profile photo</span>
+                <div class="avatar-upload-row">
+                  <input id="avatar-file" name="avatarFile" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
+                  <button type="button" class="btn btn-secondary" id="remove-avatar-btn">Remove photo</button>
+                </div>
+                <small class="avatar-help">Accepted: JPG, PNG, WEBP, GIF. Max size: 2 MB.</small>
+              </div>
+              <div class="field field-wide">
+                <span>Notification preferences</span>
+                <div class="notification-pref-grid">
+                  <label class="pref-toggle"><input id="pref-booking-updates" type="checkbox" checked> Booking updates</label>
+                  <label class="pref-toggle"><input id="pref-chat-alerts" type="checkbox" checked> Booking chat alerts</label>
+                  <label class="pref-toggle"><input id="pref-promotions" type="checkbox" checked> Offers and promotions</label>
+                </div>
+              </div>
+            </div>
+
+            <section id="provider-section" class="provider-section" aria-label="Provider details">
+              <div class="section-heading compact">
+                <div>
+                  <p class="eyebrow">Provider settings</p>
+                  <h2>Service details</h2>
+                </div>
+              </div>
+
+              <div class="field-grid provider-grid">
+                <label class="field">
+                  <span>Service category</span>
+                  <input id="serviceCategory" name="serviceCategory" type="text" placeholder="e.g. Plumbing">
+                </label>
+                <label class="field">
+                  <span>Experience years</span>
+                  <input id="experienceYears" name="experienceYears" type="number" min="0" step="1">
+                </label>
+                <label class="field field-wide">
+                  <span>Availability</span>
+                  <select id="availability" name="availability">
+                    <option value="Weekdays">Weekdays</option>
+                    <option value="Weekends">Weekends</option>
+                    <option value="Evenings">Evenings</option>
+                    <option value="Flexible">Flexible</option>
+                  </select>
+                </label>
+                <div class="field field-wide availability-panel">
+                  <span>Blocked dates</span>
+                  <div class="availability-controls">
+                    <input id="blocked-date-input" type="date">
+                    <button type="button" class="btn btn-secondary" id="add-blocked-date-btn">Add date</button>
+                  </div>
+                  <p class="availability-note">Add dates you are unavailable so customers can see your schedule at a glance.</p>
+                  <div id="blocked-dates-root" class="availability-list"></div>
+                </div>
+              </div>
+            </section>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary" id="save-btn">Save Profile</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="card bookings-card">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Recent activity</p>
+              <h2>Last 6 bookings</h2>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table class="bookings-table">
+              <thead>
+                <tr>
+                  <th>Service</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody id="bookings-table-body">
+                <tr>
+                  <td colspan="4" class="empty-state">Loading bookings...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+
+      <section class="support-grid">
+        <section class="card support-card">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Address book</p>
+              <h2>Saved locations</h2>
+            </div>
+          </div>
+
+          <form id="address-form" class="mini-form">
+            <div class="field-grid">
+              <label class="field"><span>Label</span><input id="address-label" type="text" value="Home"></label>
+              <label class="field"><span>Recipient</span><input id="recipient-name" type="text"></label>
+              <label class="field"><span>Phone</span><input id="address-phone" type="tel"></label>
+              <label class="field"><span>City</span><input id="address-city" type="text" value="Mumbai"></label>
+              <label class="field field-wide"><span>Address</span><textarea id="address-line" rows="3"></textarea></label>
+              <label class="field field-wide"><span><input id="address-default" type="checkbox"> Mark as default</span></label>
+            </div>
+            <button type="submit" class="btn btn-primary">Save Address</button>
+          </form>
+          <div id="addresses-root" class="stack-list"></div>
+        </section>
+
+        <section class="card support-card">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Favorites</p>
+              <h2>Saved services</h2>
+            </div>
+          </div>
+          <div id="favorites-root" class="stack-list"></div>
+        </section>
+
+        <section class="card support-card">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Notifications</p>
+              <h2>Recent updates</h2>
+            </div>
+          </div>
+          <div id="notifications-root" class="stack-list"></div>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <script src="js/api.js?v=20260405"></script>
+  <script src="js/profile.js?v=20260405"></script>
+</body>
+</html>
