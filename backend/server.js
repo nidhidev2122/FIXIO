@@ -6,12 +6,14 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const path = require("path");
+require("dotenv").config();
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 const JWT_SECRET = process.env.JWT_SECRET || crypto.randomBytes(32).toString("hex");
+const MONGO_URI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/home_services";
 
-mongoose.connect("mongodb://127.0.0.1:27017/home_services")
+mongoose.connect(MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log(err));
 
