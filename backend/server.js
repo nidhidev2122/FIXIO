@@ -252,12 +252,12 @@ async function seedServices() {
   if (count > 0) return;
 
   await Service.insertMany([
-    { name: "Salon for Women", description: "Waxing, facials, cleanup", eta: "45-75 min", price: 25, image: "assets/salon-women.svg", category: "Beauty", rating: 4.8 },
+    { name: "Salon for Women", description: "Waxing, facials, cleanup", eta: "45-75 min", price: 25, image: "assets/salon.avif", category: "Beauty", rating: 4.8 },
     { name: "Hair Studio for Men", description: "Haircut, shave, grooming", eta: "30-45 min", price: 30, image: "assets/hair-men.svg", category: "Beauty", rating: 4.7 },
     { name: "AC & Appliance Repair", description: "AC, fridge, washing machine", eta: "60-90 min", price: 60, image: "assets/ac-repair.svg", category: "Repair", rating: 4.9 },
-    { name: "Cleaning & Pest Control", description: "Bathroom, kitchen, sofa, pest", eta: "90-150 min", price: 40, image: "assets/cleaning-pest.svg", category: "Cleaning", rating: 4.8 },
-    { name: "Electricians", description: "Switches, lights, wiring", eta: "45-70 min", price: 35, image: "assets/electrician.svg", category: "Repair", rating: 4.6 },
-    { name: "Plumbers", description: "Leakage, fitting, drainage", eta: "45-70 min", price: 45, image: "assets/plumber.svg", category: "Repair", rating: 4.7 },
+    { name: "Cleaning & Pest Control", description: "Bathroom, kitchen, sofa, pest", eta: "90-150 min", price: 40, image: "assets/cleaning_icon.avif", category: "Cleaning", rating: 4.8 },
+    { name: "Electricians", description: "Switches, lights, wiring", eta: "45-70 min", price: 35, image: "assets/electrician-tools-logo-18959726.webp", category: "Repair", rating: 4.6 },
+    { name: "Plumbers", description: "Leakage, fitting, drainage", eta: "45-70 min", price: 45, image: "assets/plumber.webp", category: "Repair", rating: 4.7 },
   ]);
 }
 

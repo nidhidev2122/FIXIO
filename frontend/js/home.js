@@ -100,9 +100,10 @@ function renderCategories() {
     .map((cat) => {
       const safeName = safeInlineText(cat.name);
       const activeFavorite = isFavorite(cat._id);
+      const imageSrc = getServiceImage(cat);
       return `
         <article class="category-card">
-          <img src="${cat.image}" alt="${cat.name}" loading="lazy">
+          <img src="${imageSrc}" alt="${cat.name}" loading="lazy">
           <div class="card-top-row">
             <span class="chip">${cat.category || 'General'}</span>
             <button type="button" class="favorite-btn ${activeFavorite ? 'active' : ''}" onclick="toggleFavorite('${cat._id}')">${activeFavorite ? '♥ Saved' : '♡ Save'}</button>
@@ -136,9 +137,10 @@ function renderMostBooked() {
     .map((item) => {
       const safeTitle = safeInlineText(item.name);
       const activeFavorite = isFavorite(item._id);
+      const imageSrc = getServiceImage(item);
       return `
         <article class="booked-card">
-          <img src="${item.image}" alt="${item.name}" loading="lazy">
+          <img src="${imageSrc}" alt="${item.name}" loading="lazy">
           <div class="card-top-row">
             <span class="chip">${item.category || 'General'}</span>
             <button type="button" class="favorite-btn ${activeFavorite ? 'active' : ''}" onclick="toggleFavorite('${item._id}')">${activeFavorite ? '♥ Saved' : '♡ Save'}</button>
@@ -170,7 +172,7 @@ function renderFavoritesSection() {
 
   grid.innerHTML = favorites.slice(0, 4).map((item) => `
     <article class="booked-card">
-      <img src="${item.image}" alt="${item.name}" loading="lazy">
+      <img src="${getServiceImage(item)}" alt="${item.name}" loading="lazy">
       <div class="card-top-row">
         <span class="chip">${item.category || 'General'}</span>
         <button type="button" class="favorite-btn active" onclick="toggleFavorite('${item._id}')">♥ Saved</button>

@@ -3,8 +3,10 @@ body {
   margin: 0;
   min-height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: radial-gradient(circle at top right, #12335a 0%, #071423 42%);
-  color: #e9f1ff;
+  background:
+    radial-gradient(circle at top right, rgba(59, 130, 246, 0.12), transparent 30%),
+    linear-gradient(180deg, #f7faff 0%, #eef4fb 100%);
+  color: #0f172a;
 }
 
 .page-wrap {
@@ -27,11 +29,11 @@ body {
 }
 
 .panel {
-  background: rgba(16, 37, 63, 0.7);
-  border: 1px solid rgba(157, 195, 255, 0.2);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.22);
   border-radius: 16px;
   padding: 16px;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
 }
 
 .grid {
@@ -49,7 +51,7 @@ body {
 }
 
 label {
-  color: #b5c8e7;
+  color: #52607a;
   font-size: 0.84rem;
 }
 
@@ -63,10 +65,10 @@ button {
 input,
 textarea,
 select {
-  border: 1px solid rgba(157, 195, 255, 0.3);
+  border: 1px solid rgba(148, 163, 184, 0.28);
   border-radius: 10px;
-  background: rgba(7, 22, 49, 0.75);
-  color: #eff5ff;
+  background: #fff;
+  color: #0f172a;
   padding: 10px;
 }
 
@@ -79,14 +81,14 @@ button {
 }
 
 .btn-primary {
-  background: linear-gradient(90deg, #2f7bff, #5597ff);
+  background: linear-gradient(90deg, #a78bfa, #8b5cf6);
   color: #fff;
 }
 
 .btn-ghost {
   background: transparent;
-  color: #d8e6ff;
-  border: 1px solid rgba(157, 195, 255, 0.3);
+  color: #6d28d9;
+  border: 1px solid rgba(124, 58, 237, 0.28);
 }
 
 .table {
@@ -98,7 +100,7 @@ button {
 .table td {
   text-align: left;
   padding: 10px;
-  border-bottom: 1px solid rgba(157, 195, 255, 0.18);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18);
   vertical-align: top;
 }
 
@@ -106,19 +108,20 @@ button {
   display: inline-block;
   border-radius: 999px;
   padding: 2px 10px;
-  background: rgba(90, 168, 255, 0.18);
+  background: rgba(37, 99, 235, 0.12);
+  color: #1d4ed8;
 }
 
-.chip.pending { background: rgba(246, 168, 75, 0.25); }
-.chip.confirmed { background: rgba(94, 182, 255, 0.25); }
-.chip.completed { background: rgba(77, 208, 156, 0.25); }
-.chip.cancelled { background: rgba(232, 90, 119, 0.25); }
+.chip.pending { background: rgba(245, 158, 11, 0.16); color: #b45309; }
+.chip.confirmed { background: rgba(59, 130, 246, 0.16); color: #1d4ed8; }
+.chip.completed { background: rgba(34, 197, 94, 0.16); color: #15803d; }
+.chip.cancelled { background: rgba(239, 68, 68, 0.14); color: #b91c1c; }
 
 .card {
-  border: 1px solid rgba(157, 195, 255, 0.25);
+  border: 1px solid rgba(148, 163, 184, 0.22);
   border-radius: 12px;
   padding: 12px;
-  background: rgba(8, 23, 50, 0.85);
+  background: #fff;
 }
 
 @media (max-width: 860px) {
@@ -132,42 +135,3 @@ button {
   }
 }
 
-/* Monochrome theme override */
-:root {
-  color-scheme: dark;
-}
-
-html {
-  filter: grayscale(1);
-  background: #000;
-}
-
-body {
-  background: #000 !important;
-  color: #fff !important;
-}
-
-a {
-  color: #fff !important;
-}
-
-button,
-.btn,
-input,
-select,
-textarea {
-  border-color: #7a7a7a !important;
-}
-
-button,
-.btn {
-  background: #fff !important;
-  color: #000 !important;
-}
-
-input,
-select,
-textarea {
-  background: #111 !important;
-  color: #fff !important;
-}

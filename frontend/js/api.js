@@ -4,6 +4,39 @@ const API_BASE = window.location.port === "8000"
   ? "http://127.0.0.1:5000/api"
   : "/api";
 
+const SERVICE_PLACEHOLDER_IMAGES = {
+  "ac & appliance repair": "assets/ac&appliance_repair.webp",
+  "hair studio for men": "assets/mensalon.webp",
+  "salon for women": "assets/salon.avif",
+  "cleaning & pest control": "assets/cleaning_icon.avif",
+  "electricians": "assets/electrician-tools-logo-18959726.webp",
+  "plumbers": "assets/plumber.webp",
+};
+
+const SERVICE_CATEGORY_FALLBACK_IMAGES = {
+  beauty: "assets/salon.avif",
+  cleaning: "assets/cleaning_icon.avif",
+  repair: "assets/electrician-tools-logo-18959726.webp",
+  general: "assets/hero-service.svg",
+};
+
+function getServiceImage(service) {
+  if (!service) return "assets/hero-service.svg";
+
+  const nameKey = String(service.name || "").trim().toLowerCase();
+  if (SERVICE_PLACEHOLDER_IMAGES[nameKey]) {
+    return SERVICE_PLACEHOLDER_IMAGES[nameKey];
+  }
+
+  const categoryKey = String(service.category || "").trim().toLowerCase();
+  if (SERVICE_CATEGORY_FALLBACK_IMAGES[categoryKey]) {
+    return SERVICE_CATEGORY_FALLBACK_IMAGES[categoryKey];
+  }
+
+  const raw = String(service.image || "").trim();
+  return raw || "assets/hero-service.svg";
+}
+
 async function apiCall(endpoint, method = "GET", body = null) {
   const options = {
     method,

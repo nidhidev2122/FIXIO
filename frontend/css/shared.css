@@ -1,22 +1,21 @@
 /* File Overview: frontend/css/shared.css — shared for frontend UI behavior. */
 
-/* Monochrome theme override */
 :root {
-	color-scheme: dark;
+	color-scheme: light;
+	background: #f6f8fc;
 }
 
 html {
-	filter: grayscale(1);
-	background: #000;
+	background: #f6f8fc;
 }
 
 body {
-	background: #000 !important;
-	color: #fff !important;
+	background: #f6f8fc !important;
+	color: #0f172a !important;
 }
 
 a {
-	color: #fff !important;
+	color: #1d4ed8 !important;
 }
 
 button,
@@ -24,18 +23,18 @@ button,
 input,
 select,
 textarea {
-	border-color: #7a7a7a !important;
+	border-color: #d4deeb !important;
 }
 
 button,
 .btn {
-	background: #fff !important;
-	color: #000 !important;
+	background: linear-gradient(135deg, #ddd6fe 0%, #c4b5fd 100%) !important;
+	color: #5b21b6 !important;
 }
 
 input,
 select,
 textarea {
-	background: #111 !important;
-	color: #fff !important;
+	background: #fff !important;
+	color: #0f172a !important;
 }

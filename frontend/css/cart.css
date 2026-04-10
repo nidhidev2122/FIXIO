@@ -3,8 +3,10 @@ body {
   margin: 0;
   min-height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: radial-gradient(circle at top left, #123a78 0%, #081a3e 45%, #040d22 100%);
-  color: #ebf2ff;
+  background:
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.12), transparent 34%),
+    linear-gradient(180deg, #f7faff 0%, #eef4fb 100%);
+  color: #0f172a;
 }
 
 .cart-page {
@@ -27,9 +29,9 @@ body {
 }
 
 .back-btn {
-  border: 1px solid rgba(173, 201, 255, 0.4);
-  background: rgba(17, 45, 90, 0.72);
-  color: #dcebff;
+  border: 1px solid rgba(124, 58, 237, 0.24);
+  background: #ede9fe;
+  color: #6d28d9;
   border-radius: 10px;
   padding: 0.6rem 1rem;
   cursor: pointer;
@@ -43,10 +45,10 @@ body {
 
 .cart-items,
 .cart-summary {
-  background: rgba(9, 28, 64, 0.74);
-  border: 1px solid rgba(186, 212, 255, 0.2);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.22);
   border-radius: 16px;
-  box-shadow: 0 18px 36px rgba(2, 10, 26, 0.35);
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.08);
 }
 
 .cart-items {
@@ -59,7 +61,7 @@ body {
   gap: 0.8rem;
   align-items: center;
   padding: 0.9rem 0.4rem;
-  border-bottom: 1px solid rgba(188, 211, 250, 0.15);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.16);
 }
 
 .cart-item:last-child {
@@ -68,33 +70,33 @@ body {
 
 .item-info h4 {
   margin: 0 0 0.25rem;
-  color: #f6f9ff;
+  color: #0f172a;
 }
 
 .item-info p {
   margin: 0;
-  color: #bcd0ef;
+  color: #52607a;
   font-size: 0.9rem;
 }
 
 .item-price,
 .item-total {
   font-weight: 600;
-  color: #dfeaff;
+  color: #0f172a;
 }
 
 .item-quantity {
   display: inline-flex;
   align-items: center;
-  border: 1px solid rgba(184, 208, 247, 0.35);
+  border: 1px solid rgba(148, 163, 184, 0.24);
   border-radius: 10px;
   overflow: hidden;
 }
 
 .item-quantity button {
   border: none;
-  background: rgba(46, 100, 191, 0.8);
-  color: #fff;
+  background: #ddd6fe;
+	color: #6d28d9;
   width: 32px;
   height: 32px;
   cursor: pointer;
@@ -105,8 +107,8 @@ body {
   height: 32px;
   border: none;
   text-align: center;
-  background: rgba(8, 23, 50, 0.9);
-  color: #e9f2ff;
+  background: #fff;
+  color: #0f172a;
 }
 
 .item-quantity input:focus {
@@ -116,8 +118,8 @@ body {
 .remove-btn {
   border: none;
   border-radius: 8px;
-  background: rgba(205, 67, 98, 0.85);
-  color: #fff;
+  background: #ede9fe;
+	color: #7c3aed;
   padding: 0.45rem 0.65rem;
   cursor: pointer;
 }
@@ -136,16 +138,16 @@ body {
   display: flex;
   justify-content: space-between;
   margin: 0.45rem 0;
-  color: #d3e3ff;
+  color: #52607a;
 }
 
 .summary-row.total {
   margin-top: 0.9rem;
   padding-top: 0.8rem;
-  border-top: 1px solid rgba(185, 209, 248, 0.28);
+  border-top: 1px solid rgba(148, 163, 184, 0.22);
   font-size: 1.08rem;
   font-weight: 700;
-  color: #fff;
+  color: #0f172a;
 }
 
 .checkout-btn,
@@ -160,21 +162,21 @@ body {
 }
 
 .checkout-btn {
-  background: linear-gradient(90deg, #307aff, #5c9dff);
+  background: linear-gradient(90deg, #a78bfa, #8b5cf6);
   color: #fff;
 }
 
 .checkout-btn:hover {
-  box-shadow: 0 10px 20px rgba(58, 131, 250, 0.35);
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.24);
 }
 
 .clear-btn {
-  background: rgba(31, 60, 110, 0.95);
-  color: #dce9ff;
+  background: #ede9fe;
+  color: #6d28d9;
 }
 
 .clear-btn:hover {
-  background: rgba(45, 78, 136, 1);
+  background: #ddd6fe;
 }
 
 @media (max-width: 980px) {
@@ -233,7 +235,7 @@ body {
 .cart-item:hover,
 .cart-summary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.1);
 }
 
 .item-row:hover,
@@ -324,42 +326,3 @@ body {
   }
 }
 
-/* Monochrome theme override */
-:root {
-  color-scheme: dark;
-}
-
-html {
-  filter: grayscale(1);
-  background: #000;
-}
-
-body {
-  background: #000 !important;
-  color: #fff !important;
-}
-
-a {
-  color: #fff !important;
-}
-
-button,
-.btn,
-input,
-select,
-textarea {
-  border-color: #7a7a7a !important;
-}
-
-button,
-.btn {
-  background: #fff !important;
-  color: #000 !important;
-}
-
-input,
-select,
-textarea {
-  background: #111 !important;
-  color: #fff !important;
-}

@@ -45,7 +45,7 @@ function renderServicePage() {
 
   document.getElementById("service-root").innerHTML = `
     <article class="card">
-      <img src="${service.image}" alt="${service.name}" style="width:100%; height:230px; object-fit:cover; border-radius:10px;" />
+      <img src="${getServiceImage(service)}" alt="${service.name}" style="width:100%; height:230px; object-fit:cover; border-radius:10px;" />
       <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-top:12px; flex-wrap:wrap;">
         <h2 style="margin:0;">${service.name}</h2>
         <button type="button" class="btn-ghost" onclick="toggleFavorite('${service._id}')">${isFavorite ? '♥ Saved' : '♡ Save'}</button>

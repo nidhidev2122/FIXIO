@@ -57,7 +57,7 @@ function renderComparison(services) {
     <div class="grid two">
       ${services.map((service) => `
         <article class="card" style="display:grid; gap:12px;">
-          <img src="${service.image}" alt="${service.name}" style="width:100%; height:220px; object-fit:cover; border-radius:10px;" />
+          <img src="${getServiceImage(service)}" alt="${service.name}" style="width:100%; height:220px; object-fit:cover; border-radius:10px;" />
           <div style="display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap; align-items:center;">
             <h3 style="margin:0;">${service.name}</h3>
             <span class="chip">${service.category || 'General'}</span>

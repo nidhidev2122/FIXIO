@@ -12,11 +12,11 @@
   --radius-lg: 22px;
   --radius-md: 16px;
   --radius-sm: 12px;
-  --accent: #2563eb;
-  --accent-strong: #1d4ed8;
-  --accent-soft: rgba(37, 99, 235, 0.12);
-  --provider-accent: #7c3aed;
-  --provider-soft: rgba(124, 58, 237, 0.14);
+  --accent: #8b5cf6;
+  --accent-strong: #7c3aed;
+  --accent-soft: rgba(139, 92, 246, 0.14);
+  --provider-accent: #6d28d9;
+  --provider-soft: rgba(109, 40, 217, 0.14);
   --success: #16a34a;
   --error: #dc2626;
   --chip-bg: #eaf1ff;
@@ -83,9 +83,9 @@ select {
 .auth-hero {
   padding: clamp(1.5rem, 3vw, 2.5rem);
   background:
-    linear-gradient(160deg, rgba(15, 23, 42, 0.92), rgba(30, 64, 175, 0.88)),
-    radial-gradient(circle at top right, rgba(255, 255, 255, 0.1), transparent 34%);
-  color: #fff;
+    linear-gradient(160deg, rgba(250, 245, 255, 0.98), rgba(237, 233, 254, 0.96)),
+    radial-gradient(circle at top right, rgba(139, 92, 246, 0.1), transparent 34%);
+  color: var(--text-main);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -101,7 +101,7 @@ select {
   width: 18rem;
   height: 18rem;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(139, 92, 246, 0.08);
   filter: blur(2px);
 }
 
@@ -109,8 +109,8 @@ select {
   width: fit-content;
   border-radius: 999px;
   padding: 0.5rem 0.85rem;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: #f5f3ff;
+  border: 1px solid rgba(124, 58, 237, 0.18);
   font-size: 0.82rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -128,7 +128,7 @@ select {
 .auth-hero p {
   margin: 0;
   max-width: 38rem;
-  color: rgba(255, 255, 255, 0.84);
+  color: var(--text-muted);
   font-size: 1.02rem;
   line-height: 1.7;
 }
@@ -142,8 +142,8 @@ select {
 .hero-point {
   padding: 0.95rem 1rem;
   border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.09);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(148, 163, 184, 0.18);
   backdrop-filter: blur(12px);
 }
 
@@ -154,13 +154,13 @@ select {
 }
 
 .hero-point span {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-muted);
   font-size: 0.92rem;
   line-height: 1.55;
 }
 
 .auth-card {
-  background: rgba(255, 255, 255, 0.74);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(18px);
   padding: clamp(1rem, 2.4vw, 1.6rem);
   display: flex;
@@ -415,8 +415,8 @@ select {
   margin: 0.5rem 0 0.9rem;
   padding: 1rem;
   border-radius: 18px;
-  background: linear-gradient(180deg, rgba(124, 58, 237, 0.06), rgba(124, 58, 237, 0.02));
-  border: 1px solid rgba(124, 58, 237, 0.16);
+  background: linear-gradient(180deg, rgba(124, 58, 237, 0.05), rgba(124, 58, 237, 0.02));
+  border: 1px solid rgba(124, 58, 237, 0.12);
 }
 
 .provider-panel-head h3 {
@@ -447,7 +447,7 @@ select {
   width: 100%;
   border: 0;
   border-radius: 16px;
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+  background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
   color: #fff;
   font-weight: 800;
   min-height: 3.1rem;
@@ -459,7 +459,7 @@ select {
 .submit-btn:hover,
 .submit-btn:focus-visible {
   transform: translateY(-1px);
-  filter: brightness(1.03);
+  filter: brightness(0.98);
 }
 
 .submit-btn:disabled {
@@ -577,42 +577,3 @@ select {
   }
 }
 
-/* Monochrome theme override */
-:root {
-  color-scheme: dark;
-}
-
-html {
-  filter: grayscale(1);
-  background: #000;
-}
-
-body {
-  background: #000 !important;
-  color: #fff !important;
-}
-
-a {
-  color: #fff !important;
-}
-
-button,
-.btn,
-input,
-select,
-textarea {
-  border-color: #7a7a7a !important;
-}
-
-button,
-.btn {
-  background: #fff !important;
-  color: #000 !important;
-}
-
-input,
-select,
-textarea {
-  background: #111 !important;
-  color: #fff !important;
-}

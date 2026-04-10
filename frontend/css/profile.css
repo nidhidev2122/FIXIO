@@ -6,9 +6,9 @@
   --text: #0f172a;
   --muted: #5b6b84;
   --border: #d7e3f4;
-  --primary: #2563eb;
-  --primary-dark: #1d4ed8;
-  --primary-soft: rgba(37, 99, 235, 0.12);
+  --primary: #8b5cf6;
+  --primary-dark: #7c3aed;
+  --primary-soft: rgba(139, 92, 246, 0.14);
   --danger: #dc2626;
   --success: #16a34a;
   --warning: #d97706;
@@ -91,7 +91,7 @@ button {
   object-fit: cover;
   border: 2px solid rgba(37, 99, 235, 0.26);
   box-shadow: 0 10px 24px rgba(37, 99, 235, 0.18);
-  background: #eef3ff;
+  background: #f8fbff;
   flex-shrink: 0;
 }
 
@@ -145,15 +145,15 @@ button {
 }
 
 .role-consumer {
-  color: #1d4ed8;
-  background: rgba(37, 99, 235, 0.1);
-  border-color: rgba(37, 99, 235, 0.18);
+  color: #6d28d9;
+  background: rgba(139, 92, 246, 0.1);
+  border-color: rgba(139, 92, 246, 0.18);
 }
 
 .role-provider {
-  color: #7c3aed;
-  background: rgba(124, 58, 237, 0.12);
-  border-color: rgba(124, 58, 237, 0.18);
+  color: #6d28d9;
+  background: rgba(167, 139, 250, 0.12);
+  border-color: rgba(167, 139, 250, 0.18);
 }
 
 .action-row {
@@ -175,24 +175,24 @@ button {
 .btn:hover,
 .btn:focus-visible {
   transform: translateY(-1px);
-  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.12);
+  box-shadow: 0 10px 20px rgba(124, 58, 237, 0.14);
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  background: linear-gradient(135deg, #a78bfa, #8b5cf6);
   color: #fff;
 }
 
 .btn-secondary {
   background: var(--surface-soft);
   color: var(--text);
-  border-color: var(--border);
+  border-color: rgba(124, 58, 237, 0.24);
 }
 
 .btn-danger {
-  background: #fee2e2;
+  background: #ede9fe;
   color: var(--danger);
-  border-color: rgba(220, 38, 38, 0.15);
+  border-color: rgba(124, 58, 237, 0.18);
 }
 
 .btn:disabled {
@@ -369,7 +369,7 @@ button {
 .provider-section {
   padding: 1rem;
   border-radius: var(--radius-lg);
-  background: linear-gradient(180deg, rgba(37, 99, 235, 0.05), rgba(37, 99, 235, 0.02));
+  background: linear-gradient(180deg, rgba(37, 99, 235, 0.04), rgba(37, 99, 235, 0.02));
   border: 1px solid rgba(37, 99, 235, 0.12);
 }
 
@@ -378,7 +378,7 @@ button {
   padding: 1rem;
   border-radius: var(--radius-md);
   border: 1px dashed rgba(37, 99, 235, 0.2);
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.88);
 }
 
 .availability-controls {
@@ -574,42 +574,3 @@ button {
   }
 }
 
-/* Monochrome theme override */
-:root {
-  color-scheme: dark;
-}
-
-html {
-  filter: grayscale(1);
-  background: #000;
-}
-
-body {
-  background: #000 !important;
-  color: #fff !important;
-}
-
-a {
-  color: #fff !important;
-}
-
-button,
-.btn,
-input,
-select,
-textarea {
-  border-color: #7a7a7a !important;
-}
-
-button,
-.btn {
-  background: #fff !important;
-  color: #000 !important;
-}
-
-input,
-select,
-textarea {
-  background: #111 !important;
-  color: #fff !important;
-}
