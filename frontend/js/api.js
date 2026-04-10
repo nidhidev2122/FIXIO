@@ -13,6 +13,15 @@ const SERVICE_PLACEHOLDER_IMAGES = {
   "plumbers": "assets/plumber.webp",
 };
 
+const SERVICE_IMAGE_ALIASES = {
+  "assets/ac-repair.svg": "assets/ac&appliance_repair.webp",
+  "assets/hair-men.svg": "assets/mensalon.webp",
+  "assets/salon-women.svg": "assets/salon.avif",
+  "assets/cleaning-pest.svg": "assets/cleaning_icon.avif",
+  "assets/electrician.svg": "assets/electrician-tools-logo-18959726.webp",
+  "assets/plumber.svg": "assets/plumber.webp",
+};
+
 const SERVICE_CATEGORY_FALLBACK_IMAGES = {
   beauty: "assets/salon.avif",
   cleaning: "assets/cleaning_icon.avif",
@@ -22,6 +31,12 @@ const SERVICE_CATEGORY_FALLBACK_IMAGES = {
 
 function getServiceImage(service) {
   if (!service) return "assets/hero-service.svg";
+
+  const raw = String(service.image || "").trim();
+  const rawKey = raw.toLowerCase();
+  if (rawKey && SERVICE_IMAGE_ALIASES[rawKey]) {
+    return SERVICE_IMAGE_ALIASES[rawKey];
+  }
 
   const nameKey = String(service.name || "").trim().toLowerCase();
   if (SERVICE_PLACEHOLDER_IMAGES[nameKey]) {
@@ -33,7 +48,6 @@ function getServiceImage(service) {
     return SERVICE_CATEGORY_FALLBACK_IMAGES[categoryKey];
   }
 
-  const raw = String(service.image || "").trim();
   return raw || "assets/hero-service.svg";
 }
 
