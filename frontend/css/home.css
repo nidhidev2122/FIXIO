@@ -253,19 +253,20 @@ body {
 }
 
 .recent-chip {
-  border: 1px solid var(--border);
+  border: 1px solid #a855f7;
   border-radius: 999px;
-  background: var(--chip-bg);
-  color: #d4c8ff;
-  padding: 5px 12px;
-  font-size: 0.82rem;
+  background: #a855f7;
+  color: white;
+  padding: 6px 14px;
+  font-size: 0.83rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: border-color var(--transition), background var(--transition);
+  transition: all var(--transition);
 }
 
 .recent-chip:hover {
-  border-color: var(--border-hover);
-  background: var(--surface-2);
+  border-color: #8b5cf6;
+  background: #8b5cf6;
 }
 
 /* ─── Filter Shell ────────────────────────────────────────────── */
@@ -386,12 +387,13 @@ body {
 }
 
 .compare-pill {
-  border: 1px solid var(--border);
+  border: 1px solid #a855f7;
   border-radius: 999px;
-  background: var(--bg-soft);
-  color: var(--text);
+  background: #a855f7;
+  color: white;
   padding: 6px 14px;
   font-size: 0.85rem;
+  font-weight: 500;
   display: inline-flex;
   gap: 8px;
   align-items: center;
@@ -577,14 +579,14 @@ body {
 .chip {
   display: inline-block;
   margin-top: 8px;
-  padding: 3px 10px;
+  padding: 5px 12px;
   border-radius: 999px;
-  font-size: 0.74rem;
-  font-weight: 500;
-  background: var(--chip-bg);
-  border: 1px solid var(--border);
-  color: #cbb8ff;
-  letter-spacing: 0.2px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: #a855f7;
+  border: 1px solid #a855f7;
+  color: white;
+  letter-spacing: 0.3px;
 }
 
 .rating {
