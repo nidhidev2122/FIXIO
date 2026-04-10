@@ -14,11 +14,23 @@ let currentService = null;
 let currentReviews = [];
 let favoriteIds = new Set();
 let selectedSlotDate = "";
+const GUEST_FAVORITES_KEY = "fixio-guest-favorites";
+
+function getGuestFavoriteIds() {
+  return JSON.parse(localStorage.getItem(GUEST_FAVORITES_KEY) || "[]")
+    .map((item) => String(item || "").trim())
+    .filter(Boolean);
+}
+
+function setGuestFavoriteIds(ids) {
+  localStorage.setItem(GUEST_FAVORITES_KEY, JSON.stringify(Array.from(new Set(ids.map((item) => String(item))).values())));
+}
 
 async function loadServicePage(serviceId) {
+  const token = localStorage.getItem("authToken");
   const [serviceResult, favoritesResult] = await Promise.all([
     getServiceReviews(serviceId),
-    getFavorites().catch(() => ({ success: false, favorites: [] })),
+    token ? getFavorites().catch(() => ({ success: false, favorites: [] })) : Promise.resolve({ success: false, favorites: [] }),
   ]);
 
   if (!serviceResult.success) {
@@ -28,7 +40,11 @@ async function loadServicePage(serviceId) {
 
   currentService = serviceResult.service;
   currentReviews = serviceResult.reviews || [];
-  favoriteIds = new Set((favoritesResult.favorites || []).map((item) => String(item.serviceId)));
+  if (favoritesResult.success) {
+    favoriteIds = new Set((favoritesResult.favorites || []).map((item) => String(item.serviceId)));
+  } else {
+    favoriteIds = new Set(getGuestFavoriteIds());
+  }
 
   renderServicePage();
 }
@@ -152,8 +168,13 @@ function renderReviewsList() {
 async function toggleFavorite(serviceId) {
   const token = localStorage.getItem("authToken");
   if (!token) {
-    alert("Please login to save favorites");
-    window.location.href = "/auth";
+    if (favoriteIds.has(String(serviceId))) {
+      favoriteIds.delete(String(serviceId));
+    } else {
+      favoriteIds.add(String(serviceId));
+    }
+    setGuestFavoriteIds(Array.from(favoriteIds));
+    renderServicePage();
     return;
   }
 

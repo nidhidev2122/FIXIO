@@ -5,7 +5,18 @@ let favoriteServiceIds = new Set();
 let notifications = [];
 const COMPARE_KEY = 'fixio-compare-services';
 const RECENT_SEARCHES_KEY = 'fixio-recent-searches';
+const GUEST_FAVORITES_KEY = 'fixio-guest-favorites';
 let servicesLoadError = '';
+
+function getGuestFavoriteIds() {
+  return JSON.parse(localStorage.getItem(GUEST_FAVORITES_KEY) || '[]')
+    .map((item) => String(item || '').trim())
+    .filter(Boolean);
+}
+
+function setGuestFavoriteIds(ids) {
+  localStorage.setItem(GUEST_FAVORITES_KEY, JSON.stringify(Array.from(new Set(ids.map((item) => String(item))).values())));
+}
 
 function getEmergencyServices() {
   return [
@@ -95,7 +106,7 @@ async function initHome() {
 async function loadUserExtras() {
   const token = localStorage.getItem('authToken');
   if (!token) {
-    favoriteServiceIds = new Set();
+    favoriteServiceIds = new Set(getGuestFavoriteIds());
     notifications = [];
     renderNotificationsBadge();
     return;
@@ -482,8 +493,17 @@ function isFavorite(serviceId) {
 async function toggleFavorite(serviceId) {
   const token = localStorage.getItem('authToken');
   if (!token) {
-    alert('Login to save favorites.');
-    goToAuth();
+    if (isFavorite(serviceId)) {
+      favoriteServiceIds.delete(String(serviceId));
+      notifyLocal('Removed from favorites');
+    } else {
+      favoriteServiceIds.add(String(serviceId));
+      notifyLocal('Saved to favorites');
+    }
+    setGuestFavoriteIds(Array.from(favoriteServiceIds));
+    renderCategories();
+    renderMostBooked();
+    renderFavoritesSection();
     return;
   }
 
