@@ -3,7 +3,22 @@
 window.addEventListener("DOMContentLoaded", function () {
   renderCart();
   updateCartSummary();
+  maybeResumeCheckoutAfterAuth();
 });
+
+function maybeResumeCheckoutAfterAuth() {
+  const params = new URLSearchParams(window.location.search);
+  const shouldResume = params.get("checkout") === "1";
+  const token = localStorage.getItem("authToken");
+
+  if (!shouldResume || !token) {
+    return;
+  }
+
+  // Clean URL first to avoid re-running checkout on refresh.
+  window.history.replaceState({}, "", "/cart");
+  handleCheckout();
+}
 
 function renderCart() {
   const items = getCartItems();
@@ -75,8 +90,8 @@ async function handleCheckout() {
   
   const token = localStorage.getItem("authToken");
   if (!token) {
-    alert("Please login to checkout");
-    window.location.href = "/auth";
+    alert("Login or register to continue to payment.");
+    window.location.href = "/auth?next=%2Fcart%3Fcheckout%3D1";
     return;
   }
 

@@ -7,6 +7,15 @@ const ACCOUNT_TYPE_STORAGE_KEY = "fixio-account-type";
 const AUTH_TOKEN_STORAGE_KEY = "authToken";
 const AUTH_USER_STORAGE_KEY = "user";
 
+function getPostAuthRedirectPath() {
+  const params = new URLSearchParams(window.location.search);
+  const next = params.get("next");
+  if (!next) return "/profile.html";
+
+  // Basic same-origin guard to prevent open redirects.
+  return next.startsWith("/") ? next : "/profile.html";
+}
+
 function setSelectedAccountType(type) {
   selectedAccountType = type;
   if (type === "consumer" || type === "provider") {
@@ -229,7 +238,8 @@ async function handleLogin(event) {
       localStorage.setItem("user", JSON.stringify(result.user));
       sessionStorage.setItem("user", JSON.stringify(result.user));
       showMessage("Login successful!", "success");
-      setTimeout(() => { window.location.replace("/profile.html"); }, 800);
+      const nextPath = getPostAuthRedirectPath();
+      setTimeout(() => { window.location.replace(nextPath); }, 800);
     } else {
       showMessage(result.message || "Login failed", "error");
     }
@@ -308,7 +318,8 @@ async function handleRegister(event) {
       localStorage.setItem("user", JSON.stringify(result.user));
       sessionStorage.setItem("user", JSON.stringify(result.user));
       showMessage("Registration successful!", "success");
-      setTimeout(() => { window.location.replace("/profile.html"); }, 800);
+      const nextPath = getPostAuthRedirectPath();
+      setTimeout(() => { window.location.replace(nextPath); }, 800);
     } else {
       showMessage(result.message || "Registration failed", "error");
     }
