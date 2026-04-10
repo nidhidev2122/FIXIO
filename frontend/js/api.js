@@ -29,6 +29,69 @@ const SERVICE_CATEGORY_FALLBACK_IMAGES = {
   general: "assets/hero-service.svg",
 };
 
+const FALLBACK_SERVICES = [
+  {
+    _id: "fallback-salon-women",
+    name: "Salon for Women",
+    description: "Waxing, facials, cleanup",
+    eta: "45-75 min",
+    price: 25,
+    image: "assets/salon.avif",
+    category: "Beauty",
+    rating: 4.8,
+  },
+  {
+    _id: "fallback-hair-men",
+    name: "Hair Studio for Men",
+    description: "Haircut, shave, grooming",
+    eta: "30-45 min",
+    price: 30,
+    image: "assets/mensalon.webp",
+    category: "Beauty",
+    rating: 4.7,
+  },
+  {
+    _id: "fallback-ac",
+    name: "AC & Appliance Repair",
+    description: "AC, fridge, washing machine",
+    eta: "60-90 min",
+    price: 60,
+    image: "assets/ac&appliance_repair.webp",
+    category: "Repair",
+    rating: 4.9,
+  },
+  {
+    _id: "fallback-cleaning",
+    name: "Cleaning & Pest Control",
+    description: "Bathroom, kitchen, sofa, pest",
+    eta: "90-150 min",
+    price: 40,
+    image: "assets/cleaning_icon.avif",
+    category: "Cleaning",
+    rating: 4.8,
+  },
+  {
+    _id: "fallback-electrician",
+    name: "Electricians",
+    description: "Switches, lights, wiring",
+    eta: "45-70 min",
+    price: 35,
+    image: "assets/electrician-tools-logo-18959726.webp",
+    category: "Repair",
+    rating: 4.6,
+  },
+  {
+    _id: "fallback-plumber",
+    name: "Plumbers",
+    description: "Leakage, fitting, drainage",
+    eta: "45-70 min",
+    price: 45,
+    image: "assets/plumber.webp",
+    category: "Repair",
+    rating: 4.7,
+  },
+];
+
 function getServiceImage(service) {
   if (!service) return "assets/hero-service.svg";
 
@@ -115,7 +178,14 @@ async function getServices(query = "", filters = {}) {
   });
 
   const q = params.toString();
-  return apiCall(`/services${q ? `?${q}` : ""}`, "GET");
+  const response = await apiCall(`/services${q ? `?${q}` : ""}`, "GET");
+  if (response.success) {
+    return response;
+  }
+
+  // Hosted frontend (e.g. Vercel) can be up even when API is unreachable.
+  // Keep the home screen usable with a static fallback catalog.
+  return { success: true, services: FALLBACK_SERVICES };
 }
 
 async function getServiceById(serviceId) {
