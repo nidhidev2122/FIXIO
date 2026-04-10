@@ -7,6 +7,71 @@ const COMPARE_KEY = 'fixio-compare-services';
 const RECENT_SEARCHES_KEY = 'fixio-recent-searches';
 let servicesLoadError = '';
 
+function getEmergencyServices() {
+  return [
+    {
+      _id: 'emergency-salon-women',
+      name: 'Salon for Women',
+      description: 'Waxing, facials, cleanup',
+      eta: '45-75 min',
+      price: 25,
+      image: 'assets/salon.avif',
+      category: 'Beauty',
+      rating: 4.8,
+    },
+    {
+      _id: 'emergency-hair-men',
+      name: 'Hair Studio for Men',
+      description: 'Haircut, shave, grooming',
+      eta: '30-45 min',
+      price: 30,
+      image: 'assets/mensalon.webp',
+      category: 'Beauty',
+      rating: 4.7,
+    },
+    {
+      _id: 'emergency-ac',
+      name: 'AC & Appliance Repair',
+      description: 'AC, fridge, washing machine',
+      eta: '60-90 min',
+      price: 60,
+      image: 'assets/ac&appliance_repair.webp',
+      category: 'Repair',
+      rating: 4.9,
+    },
+    {
+      _id: 'emergency-cleaning',
+      name: 'Cleaning & Pest Control',
+      description: 'Bathroom, kitchen, sofa, pest',
+      eta: '90-150 min',
+      price: 40,
+      image: 'assets/cleaning_icon.avif',
+      category: 'Cleaning',
+      rating: 4.8,
+    },
+    {
+      _id: 'emergency-electrician',
+      name: 'Electricians',
+      description: 'Switches, lights, wiring',
+      eta: '45-70 min',
+      price: 35,
+      image: 'assets/electrician-tools-logo-18959726.webp',
+      category: 'Repair',
+      rating: 4.6,
+    },
+    {
+      _id: 'emergency-plumber',
+      name: 'Plumbers',
+      description: 'Leakage, fitting, drainage',
+      eta: '45-70 min',
+      price: 45,
+      image: 'assets/plumber.webp',
+      category: 'Repair',
+      rating: 4.7,
+    },
+  ];
+}
+
 window.addEventListener('DOMContentLoaded', function () {
   initHome().catch((err) => {
     console.error(err);
@@ -73,8 +138,9 @@ async function loadServices(query = "") {
     // Leave final error messaging to the UI.
   }
 
-  services = [];
-  servicesLoadError = result.message || 'Could not load services. Make sure backend is running on port 5000.';
+  // Final safety net for hosted frontend when backend is unreachable.
+  services = getEmergencyServices();
+  servicesLoadError = '';
 }
 
 function safeInlineText(value) {
