@@ -10,10 +10,10 @@
   --text-secondary: #475569;
   --muted:          #64748b;
   --subtle:         #94a3b8;
-  --accent:         #b794f6;
-  --accent-dim:     rgba(183, 148, 246, 0.12);
-  --accent-strong:  #a78bfa;
-  --chip-bg:        #f3e8ff;
+  --accent:         #a855f7;
+  --accent-dim:     rgba(168, 85, 247, 0.12);
+  --accent-strong:  #8b5cf6;
+  --chip-bg:        #ede9fe;
   --border:         #e2e8f0;
   --border-hover:   #cbd5e1;
   --radius-sm:      6px;
@@ -23,7 +23,7 @@
   --shadow-sm:      0 1px 3px rgba(0, 0, 0, 0.08);
   --shadow-md:      0 4px 12px rgba(0, 0, 0, 0.1);
   --shadow-lg:      0 8px 20px rgba(0, 0, 0, 0.12);
-  --shadow-hover:   0 12px 24px rgba(183, 148, 246, 0.2);
+  --shadow-hover:   0 12px 24px rgba(168, 85, 247, 0.2);
   --transition:     150ms ease;
 }
 
@@ -62,7 +62,7 @@ body {
   font-size: 1.5rem;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: var(--accent-strong);
+  color: #8b5cf6;
 }
 
 .nav-links {
