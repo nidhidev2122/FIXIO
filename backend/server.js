@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
-const path = require("path");
 require("dotenv").config();
 
 const app = express();
@@ -158,9 +157,6 @@ const SupportTicket = mongoose.model("SupportTicket", SupportTicketSchema);
 
 app.use(cors());
 app.use(express.json());
-
-const FRONTEND_DIR = path.join(__dirname, "../frontend");
-app.use(express.static(FRONTEND_DIR));
 
 const loginAttempts = new Map();
 function getClientIp(req) {
@@ -1324,15 +1320,10 @@ app.get("/api/users", async (req, res) => {
   res.json(users);
 });
 
-app.get("/", (req, res) => res.sendFile(path.join(FRONTEND_DIR, "index.html")));
-app.get("/auth", (req, res) => res.sendFile(path.join(FRONTEND_DIR, "auth.html")));
-app.get("/cart", (req, res) => res.sendFile(path.join(FRONTEND_DIR, "cart.html")));
-app.get("/profile", (req, res) => res.sendFile(path.join(FRONTEND_DIR, "profile.html")));
-app.get("/service", (req, res) => res.sendFile(path.join(FRONTEND_DIR, "service.html")));
-app.get("/bookings", (req, res) => res.sendFile(path.join(FRONTEND_DIR, "bookings.html")));
-app.get("/booking", (req, res) => res.sendFile(path.join(FRONTEND_DIR, "booking.html")));
-app.get("/provider-dashboard", (req, res) => res.sendFile(path.join(FRONTEND_DIR, "provider-dashboard.html")));
-app.get("/compare", (req, res) => res.sendFile(path.join(FRONTEND_DIR, "compare.html")));
+// Catch-all for non-API routes - return API-only message
+app.get("*", (req, res) => {
+  res.status(200).json({ message: "API server running. Frontend is served separately at http://localhost:8000" });
+});
 
 seedServices()
   .then(() => {
