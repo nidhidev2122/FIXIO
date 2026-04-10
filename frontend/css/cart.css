@@ -150,6 +150,41 @@ body {
   color: #0f172a;
 }
 
+.payment-box {
+  margin-top: 0.9rem;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 12px;
+  background: #f8fafc;
+  padding: 0.85rem;
+}
+
+.payment-title {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0.35rem 0;
+  color: #334155;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.payment-option input {
+  accent-color: #8b5cf6;
+}
+
+.payment-note {
+  margin: 0.5rem 0 0;
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
 .checkout-btn,
 .clear-btn {
   width: 100%;

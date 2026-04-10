@@ -26,7 +26,19 @@
           <span>Total</span>
           <strong id="total">$0</strong>
         </div>
-        <button type="button" class="checkout-btn" onclick="handleCheckout()">Proceed to Checkout</button>
+        <div class="payment-box" aria-label="Payment method">
+          <p class="payment-title">Choose payment method</p>
+          <label class="payment-option">
+            <input type="radio" name="payment-method" value="cod" checked>
+            <span>Cash on Delivery</span>
+          </label>
+          <label class="payment-option">
+            <input type="radio" name="payment-method" value="online">
+            <span>Pay Online (Mock)</span>
+          </label>
+          <p class="payment-note" id="payment-note">You will pay when the service professional arrives.</p>
+        </div>
+        <button type="button" class="checkout-btn" onclick="handleCheckout()">Proceed to Payment</button>
         <button type="button" class="clear-btn" onclick="handleClearCart()">Clear Cart</button>
       </div>
     </section>

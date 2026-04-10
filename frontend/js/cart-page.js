@@ -3,8 +3,39 @@
 window.addEventListener("DOMContentLoaded", function () {
   renderCart();
   updateCartSummary();
+  bindPaymentEvents();
   maybeResumeCheckoutAfterAuth();
 });
+
+function bindPaymentEvents() {
+  const options = document.querySelectorAll('input[name="payment-method"]');
+  const paymentNote = document.getElementById("payment-note");
+  if (!options.length || !paymentNote) return;
+
+  const savedMethod = localStorage.getItem("fixio-payment-method");
+  if (savedMethod === "online" || savedMethod === "cod") {
+    const candidate = Array.from(options).find((item) => item.value === savedMethod);
+    if (candidate) {
+      candidate.checked = true;
+    }
+  }
+
+  const refreshNote = () => {
+    const method = getSelectedPaymentMethod();
+    localStorage.setItem("fixio-payment-method", method);
+    paymentNote.textContent = method === "cod"
+      ? "You will pay when the service professional arrives."
+      : "Online payment is simulated for now and will confirm instantly.";
+  };
+
+  options.forEach((item) => item.addEventListener("change", refreshNote));
+  refreshNote();
+}
+
+function getSelectedPaymentMethod() {
+  const selected = document.querySelector('input[name="payment-method"]:checked');
+  return selected?.value === "online" ? "online" : "cod";
+}
 
 function maybeResumeCheckoutAfterAuth() {
   const params = new URLSearchParams(window.location.search);
@@ -87,12 +118,21 @@ async function handleCheckout() {
     alert("Your cart is empty");
     return;
   }
+
+  const paymentMethod = getSelectedPaymentMethod();
   
   const token = localStorage.getItem("authToken");
   if (!token) {
     alert("Login or register to continue to payment.");
     window.location.href = "/auth?next=%2Fcart%3Fcheckout%3D1";
     return;
+  }
+
+  if (paymentMethod === "online") {
+    const proceedOnline = confirm("This is a demo payment gateway. Confirm online payment now?");
+    if (!proceedOnline) {
+      return;
+    }
   }
 
   const bookingDate = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
@@ -105,7 +145,9 @@ async function handleCheckout() {
       location: item.location || "Mumbai",
       scheduledAt: bookingDate,
       address: "Address will be confirmed by support",
-      notes: "Booked from cart checkout",
+      notes: paymentMethod === "cod"
+        ? "Booked from cart checkout | Payment: Cash on Delivery"
+        : "Booked from cart checkout | Payment: Online (Mock)",
     });
     if (result.success) {
       created += 1;
@@ -116,7 +158,9 @@ async function handleCheckout() {
     clearCart();
     renderCart();
     updateCartSummary();
-    alert(`Booking created for ${created} service(s).`);
+    alert(paymentMethod === "cod"
+      ? `Booking created for ${created} service(s) with Cash on Delivery.`
+      : `Booking created for ${created} service(s). Online payment confirmed.`);
     window.location.href = "/bookings";
     return;
   }
