@@ -1,5 +1,6 @@
 /* File Overview: frontend/js/compare.js — compare for frontend UI behavior. */
 const COMPARE_KEY = 'fixio-compare-services';
+const COMPARE_SNAPSHOT_KEY = 'fixio-compare-snapshot';
 
 window.addEventListener('DOMContentLoaded', initComparePage);
 
@@ -17,7 +18,17 @@ async function initComparePage() {
   }
 
   const results = await Promise.all(serviceIds.map((serviceId) => getServiceById(serviceId).catch(() => ({ success: false }))));
-  const services = results.filter((result) => result.success).map((result) => result.service);
+  const apiServices = results.filter((result) => result.success).map((result) => result.service);
+
+  const snapshotById = new Map(getCompareSnapshot().map((item) => [String(item._id), item]));
+  const mergedServices = serviceIds
+    .map((serviceId) => {
+      const apiItem = apiServices.find((item) => String(item._id) === String(serviceId));
+      return apiItem || snapshotById.get(String(serviceId));
+    })
+    .filter(Boolean);
+
+  const services = mergedServices;
 
   if (services.length < 2) {
     document.getElementById('compare-root').innerHTML = `
@@ -31,6 +42,12 @@ async function initComparePage() {
   }
 
   renderComparison(services);
+}
+
+function getCompareSnapshot() {
+  return JSON.parse(localStorage.getItem(COMPARE_SNAPSHOT_KEY) || '[]')
+    .map((item) => item || {})
+    .filter((item) => item && item._id);
 }
 
 function getSelectedIds() {

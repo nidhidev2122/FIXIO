@@ -4,6 +4,7 @@ let services = [];
 let favoriteServiceIds = new Set();
 let notifications = [];
 const COMPARE_KEY = 'fixio-compare-services';
+const COMPARE_SNAPSHOT_KEY = 'fixio-compare-snapshot';
 const RECENT_SEARCHES_KEY = 'fixio-recent-searches';
 const GUEST_FAVORITES_KEY = 'fixio-guest-favorites';
 let servicesLoadError = '';
@@ -271,7 +272,25 @@ function getCompareIds() {
 }
 
 function setCompareIds(ids) {
-  localStorage.setItem(COMPARE_KEY, JSON.stringify(Array.from(new Set(ids)).slice(0, 3)));
+  const uniqueIds = Array.from(new Set(ids)).slice(0, 3);
+  localStorage.setItem(COMPARE_KEY, JSON.stringify(uniqueIds));
+
+  const snapshot = uniqueIds
+    .map((serviceId) => services.find((item) => String(item._id) === String(serviceId)))
+    .filter(Boolean)
+    .map((item) => ({
+      _id: String(item._id),
+      name: item.name,
+      description: item.description,
+      eta: item.eta,
+      price: item.price,
+      image: item.image,
+      category: item.category,
+      rating: item.rating,
+      providerName: item.providerName,
+    }));
+
+  localStorage.setItem(COMPARE_SNAPSHOT_KEY, JSON.stringify(snapshot));
   renderCompareTray();
   renderCategories();
   renderMostBooked();
