@@ -65,10 +65,5 @@ FIXIO/
 
 To simplify the process of discovering and booking home services through an accessible digital platform.
 
-## 👩‍💻 Contributors
 
-Developed as a collaborative project.
 
-## 📄 License
-
-Add a license if you intend to distribute the project under specific open-source terms.
